@@ -1,4 +1,4 @@
-# Independent Moving Lead Gen System
+# Independent Moving Lead Gen
 
 A near-zero-cost web app for a small moving company to capture its own local leads
 instead of paying a moving-labor marketplace for dispatched jobs. Customers get an
