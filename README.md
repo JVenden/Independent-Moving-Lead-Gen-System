@@ -57,6 +57,15 @@ Customer fills 3-step form ──▶ POST /api/leads
 Without Supabase/alert settings, dev mode still works: leads are printed to the terminal.
 In production, a missing Supabase config makes the API return an error rather than silently drop leads.
 
+## Deploy on Netlify
+
+1. Sign in at app.netlify.com → **Add new site → Import an existing project → GitHub**.
+2. Pick this repo. Netlify reads `netlify.toml`, so the build settings fill in themselves.
+3. Click **Deploy**. You get a link like `https://your-site.netlify.app`.
+
+`netlify.toml` turns on **demo mode** (quotes work, nothing is saved or sent). To go live,
+delete the `NEXT_PUBLIC_DEMO_MODE` line and add the Supabase and Telegram variables in Netlify.
+
 ## Before launch
 
 - [ ] Replace the placeholder prices in `src/lib/pricing.ts` with the owner's real rates

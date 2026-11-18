@@ -1,0 +1,11 @@
+# Netlify picks up Next.js automatically; this just pins the basics.
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "20"
+  # Demo mode: quotes work, but nothing is saved or sent and a "Demo" banner shows.
+  # To go live: delete the next line, then add the Supabase + Telegram variables
+  # from .env.example under Site configuration → Environment variables.
+  NEXT_PUBLIC_DEMO_MODE = "true"

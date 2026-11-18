@@ -30,6 +30,11 @@ export async function POST(request: Request) {
 
   const quote = calculateQuote(lead);
 
+  // Demo mode: show the quote, but don't save or alert (no accounts needed).
+  if (process.env.NEXT_PUBLIC_DEMO_MODE === "true") {
+    return NextResponse.json({ success: true, quote });
+  }
+
   // 1. Save first: a lead must never exist only as a notification.
   try {
     await saveLead(lead, quote);
