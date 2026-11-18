@@ -1,4 +1,4 @@
-# Netlify picks up Next.js automatically; this just pins the basics.
+# Netlify build settings for this Next.js app.
 [build]
   command = "npm run build"
   publish = ".next"
@@ -9,3 +9,8 @@
   # To go live: delete the next line, then add the Supabase + Telegram variables
   # from .env.example under Site configuration → Environment variables.
   NEXT_PUBLIC_DEMO_MODE = "true"
+
+# Netlify's Next.js adapter: serves pages and runs the /api/leads function.
+# Without it, Netlify uploads the build folder as plain files and every page 404s.
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
