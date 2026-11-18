@@ -7,7 +7,7 @@ import type { Quote } from "./pricing";
  * Table definition: supabase/schema.sql
  */
 export async function saveLead(lead: LeadFormValues, quote: Quote): Promise<{ id: string | null }> {
-  const url = process.env.SUPABASE_URL;
+  const url = process.env.SUPABASE_URL ?? process.env.NEXT_PUBLIC_SUPABASE_URL;
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
   if (!url || !key) {
@@ -38,7 +38,7 @@ export async function saveLead(lead: LeadFormValues, quote: Quote): Promise<{ id
       move_date: lead.moveDate,
       full_name: lead.fullName,
       phone: lead.phone,
-      email: lead.email,
+      email: lead.email || null,
       sms_consent: lead.smsConsent,
       source: lead.referralSource || "website",
       distance_miles: quote.miles,

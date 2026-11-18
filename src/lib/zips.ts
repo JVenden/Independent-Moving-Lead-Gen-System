@@ -8,6 +8,6 @@
  * Free source for ZIP centroids: https://simplemaps.com/data/us-zips
  */
 export const ZIP_COORDS: Record<string, [number, number]> = {
-  "53925": [43.07, -89.4], // example — verify
-  "53538": [43.0, -89.5], // example — verify
+  "53925": [43.338, -89.015], // Columbus, WI (approx. centroid)
+  "53538": [42.928, -88.837], // Fort Atkinson, WI (approx. centroid)
 };

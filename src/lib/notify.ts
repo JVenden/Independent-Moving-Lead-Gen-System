@@ -34,6 +34,7 @@ export function formatLeadMessage(lead: LeadFormValues, quote: Quote) {
   return [
     `🚚 NEW LEAD${quote.needsReview ? " ⚠️ REVIEW PRICE" : ""}`,
     `${lead.fullName} — ${formatPhone(lead.phone)}`,
+    lead.email ? `Email: ${lead.email}` : null,
     `${service}, ${label(lead.homeSize)}`,
     `Date: ${lead.moveDate}`,
     `Zip: ${route}${quote.miles !== null ? ` (~${quote.miles} mi)` : ""}`,
@@ -63,7 +64,7 @@ async function sendTelegram(text: string) {
 async function sendEmailToSms(text: string) {
   const apiKey = process.env.RESEND_API_KEY;
   const from = process.env.RESEND_FROM;
-  const to = process.env.DISPATCH_SMS_GATEWAY;
+  const to = process.env.DISPATCH_SMS_GATEWAY ?? process.env.FRIEND_CARRIER_GATEWAY;
   if (!apiKey || !from || !to) return false;
 
   const res = await fetch("https://api.resend.com/emails", {

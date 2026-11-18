@@ -9,6 +9,7 @@ import type { Quote } from "@/lib/pricing";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
+import { BUSINESS, telHref } from "@/lib/business";
 
 import { StepLocation } from "./StepLocation";
 import { StepScope } from "./StepScope";
@@ -24,9 +25,16 @@ const STEP_FIELDS: Record<FormStep, (keyof LeadFormInput)[]> = {
   3: ["fullName", "phone", "email", "smsConsent", "referralSource", "website"],
 };
 
-const BUSINESS_PHONE = process.env.NEXT_PUBLIC_BUSINESS_PHONE;
+const BUSINESS_PHONE = BUSINESS.phone;
 
-export function LeadFormWizard() {
+export function LeadFormWizard({
+  defaultServiceType = "labor_only",
+  defaultFromZip = "",
+}: {
+  /** Lets city/service landing pages pre-select the service and ZIP. */
+  defaultServiceType?: LeadFormInput["serviceType"];
+  defaultFromZip?: string;
+} = {}) {
   const [currentStep, setCurrentStep] = useState<FormStep | 4>(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
@@ -35,9 +43,9 @@ export function LeadFormWizard() {
   const form = useForm<LeadFormInput>({
     resolver: zodResolver(leadFormSchema),
     defaultValues: {
-      serviceType: "labor_only",
+      serviceType: defaultServiceType,
       laborType: undefined,
-      fromZip: "",
+      fromZip: defaultFromZip,
       toZip: "",
       homeSize: "2bed",
       stairs: "none",
@@ -140,7 +148,7 @@ export function LeadFormWizard() {
           {currentStep === 1 && <StepLocation form={form} />}
           {currentStep === 2 && <StepScope form={form} />}
           {currentStep === 3 && <StepContact form={form} />}
-          {currentStep === 4 && <StepSuccess quote={quote} serviceType={form.getValues("serviceType")} />}
+          {currentStep === 4 && <StepSuccess quote={quote} serviceType={form.getValues("serviceType")} moveDate={form.getValues("moveDate")} />}
 
           {submitError && currentStep === TOTAL_STEPS && (
             <div role="alert" className="mt-6 rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700">
@@ -148,7 +156,7 @@ export function LeadFormWizard() {
               {BUSINESS_PHONE && (
                 <>
                   {" "}You can also call us at{" "}
-                  <a href={`tel:${BUSINESS_PHONE.replace(/\D/g, "")}`} className="font-semibold underline">
+                  <a href={telHref(BUSINESS_PHONE)} className="font-semibold underline">
                     {BUSINESS_PHONE}
                   </a>
                   .

@@ -35,7 +35,12 @@ Customer fills 3-step form ──▶ POST /api/leads
 | `src/lib/notify.ts` | Sends the lead alert to dispatch |
 | `src/app/api/leads/route.ts` | Validate → price → save → alert |
 | `src/components/lead-form/*` | The 3-step wizard |
+| `src/lib/business.ts` | Business name/address/phone (NAP), review link, hours: **one place for all of it** |
+| `src/content/locations.ts` | Local SEO city/service landing pages (e.g. `/labor-only-movers-columbus-wi`) |
+| `src/app/review` | `yoursite.com/review` → redirects to the Google review form |
+| `src/app/sitemap.ts`, `robots.ts` | Auto-generated sitemap including published city pages |
 | `supabase/schema.sql` | Run once in Supabase to create the `leads` table |
+| `docs/google-business-playbook.md` | Step-by-step Google Business Profile + local SEO plan |
 
 ## Setup
 
@@ -56,7 +61,8 @@ In production, a missing Supabase config makes the API return an error rather th
 
 - [ ] Replace the placeholder prices in `src/lib/pricing.ts` with the owner's real rates
 - [ ] Fill `src/lib/zips.ts` with the ZIP codes actually served (unknown ZIPs get flagged `needs_review`)
-- [ ] Set `NEXT_PUBLIC_BUSINESS_PHONE`
+- [ ] Fill in `src/lib/business.ts` (must match the Google Business Profile exactly)
+- [ ] Write real content for at least 1–2 pages in `src/content/locations.ts` and set `draft: false`
 - [ ] Deploy on a host whose free tier allows commercial use (e.g. Netlify, Cloudflare).
       Vercel's free Hobby plan is non-commercial only.
 - [ ] Send a test lead and confirm it lands in Supabase and on the phone
@@ -65,5 +71,4 @@ In production, a missing Supabase config makes the API return an error rather th
 - Owner dashboard to move leads through `new → contacted → quoted → booked → completed`
 - Auto-text the customer their quote (Twilio; requires A2P 10DLC registration)
 - Deposit / booking calendar to lock in dates
-- Review requests after completed jobs (Google reviews drive free leads)
 - Compare `quote_min/max` vs `final_price` to tune the pricing formula

@@ -36,7 +36,7 @@ export function StepContact({ form }: { form: UseFormReturn<LeadFormInput> }) {
         />
       </Field>
 
-      <Field id="email" label="Email Address" error={errors.email?.message}>
+      <Field id="email" label="Email Address (optional)" error={errors.email?.message}>
         <input
           id="email"
           type="email"

@@ -35,7 +35,7 @@ const baseSchema = z.object({
     .string()
     .transform((p) => p.replace(/\D/g, "").replace(/^1(?=\d{10}$)/, ""))
     .pipe(z.string().length(10, "Enter a valid 10-digit phone number")),
-  email: z.string().trim().email("Invalid email address"),
+  email: z.union([z.string().trim().email("Invalid email address"), z.literal("")]).optional(),
   smsConsent: z.boolean().default(false),
   referralSource: z.string().max(100).optional(),
   website: z.string().max(0).optional(), // honeypot: hidden field, real users leave it blank
