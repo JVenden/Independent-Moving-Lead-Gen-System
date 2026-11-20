@@ -1,18 +1,18 @@
-# P.I.L.O.T.
+# L.E.O.
 
-**Prospect Identification, Layout & Outreach Technology**: a lead engine for a local web design
+**Lead Engine & Outreach**: a lead engine for a local web design
 and marketing agency. It finds local businesses with weak websites, builds each one a personalized
 preview site, gives you the outreach scripts, and pings your phone when they look at it or ask for a quote.
 
-> Working name. The product and agency names live in `src/lib/brand.ts`, so renaming is a one-line change.
+> The product and agency names live in `src/lib/brand.ts`, so renaming is a one-line change.
 
-## The four parts
+## What's inside
 
 | Part | Where | What it does |
 |---|---|---|
-| **P**rospect Identification | `/admin` → Find prospects | Searches Google Maps for a trade + city, checks every website, scores 0–100 |
-| **L**ayout | `/p/<slug>` | A personalized preview of the business's new site (their name, phone, rating, trade) |
-| **O**utreach | `/admin` → prospect card | Personalized cold email, call script, and follow-up text, plus pipeline status and notes |
+| Prospect finder | `/admin` → Find prospects | Searches Google Maps for a trade + city, checks every website, scores 0–100 |
+| Preview sites | `/p/<slug>` | A personalized preview of the business's new site (their name, phone, rating, trade) |
+| Outreach | `/admin` → prospect card | Personalized cold email, call script, and follow-up text, plus pipeline status and notes |
 | Inbound funnel | `/` | Your agency site: 3-step estimate form, server-side pricing, saved to DB, texted to you |
 
 ### How the pieces connect
@@ -68,7 +68,7 @@ Without a Places key in dev, "Find prospects" loads sample businesses so you can
 
 ## Deploy (Netlify)
 
-Same as the moving site: import the repo in Netlify, set the **base directory** to `pilot`,
+Same as the moving site: import the repo in Netlify, set the **base directory** to `leo`,
 and deploy. `netlify.toml` starts in **demo mode** (sample data, nothing saved or sent, admin open).
 To go live, delete `NEXT_PUBLIC_DEMO_MODE` and add the environment variables.
 
@@ -96,4 +96,4 @@ To go live, delete `NEXT_PUBLIC_DEMO_MODE` and add the environment variables.
 - Inbound leads view in `/admin` (they're saved in Supabase today)
 - One-click "convert to client site": generate a real site from the preview template (reusing the moving-site codebase)
 - Email sending + automatic follow-up sequence from the dashboard
-- Multi-user / white-label: sell P.I.L.O.T. to other agencies as SaaS
+- Multi-user / white-label: sell L.E.O. to other agencies as SaaS

@@ -1,13 +1,13 @@
 /**
  * Single source of truth for the product + agency identity.
- * Renaming the product (e.g. P.I.L.O.T. → Porchlight) is a one-line change here.
+ * Renaming the product (e.g. L.E.O. → something else) is a one-line change here.
  *
  * TODO: replace every placeholder before launch.
  */
 export const BRAND = {
   /** Product name shown in the admin dashboard and page titles. */
-  product: "P.I.L.O.T.",
-  productTagline: "Prospect Identification, Layout & Outreach Technology",
+  product: "L.E.O.",
+  productTagline: "Lead Engine & Outreach",
 
   /** Your agency (what prospects and clients see). */
   agencyName: "Your Agency Name",

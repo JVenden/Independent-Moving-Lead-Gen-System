@@ -1,1 +1,1 @@
-{ "extends": "next/core-web-vitals", "ignorePatterns": ["pilot/"] }
+{ "extends": "next/core-web-vitals", "ignorePatterns": ["leo/"] }
